@@ -1,0 +1,5 @@
+---
+- :secret_code: '3353'
+  :attempts_left: 5
+  :hints_left: 2
+  :name: Test

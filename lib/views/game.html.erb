@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Codebreaker</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/application.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integr
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="game-info ">
+          <a href="/data">Statistics</a></div>
+        </div>
+      </nav>
+      <h1 class = "title">Codebreaker</h1>
+      <div class="info">
+        <p>Attempts left: <%= @game.attempts %></p>
+        <p>Your guess: <%= session_data(:guess) %></p>
+        <p>Answer: <%= session_data(:turns)[session_data(:guess)] %></p>
+      </div>
+      <div class="game">
+        <% if session_data(:turns)[session_data(:guess)] == '++++' %>
+          You win!<br>
+          Would you like to save your result?
+          <div class="col-xs-4"
+          <form method="post" action="/save">
+            <input type="text" name="name" class="text" placeholder = "Enter your name..." required autofocus>
+            <input type="submit" value="Save" class="btn">
+          </form>
+        <% elsif @game.attempts == 0 %>
+          You loose<br>
+          Secret code: <%= @game.to_h[:secret_code] %>
+        <% else %>
+          <form method="post" action="/code_checker">
+            <input type="text" name="guess" class="text" placeholder = "Enter your guess..." pattern="[1-6]{4,}" maxlength="4" required autofocus>
+            <input type="submit" value="Try" class="btn btn-try">
+          </form>
+          <% if @request.session['hint'].nil? %>
+              <a href="/hint"><button type="submit" formaction="/hint" class="btn">Hint</button></a><br>
+          <% else %>
+            Your hint is: <%= session_data(:hint) %><br>
+          <% end %>
+        <% end %>
+        <a href="/restart"><button type="submit" class="btn">Restart</button></a>
+      </div>
+      <div id="records-container">
+        <table>
+          <caption>Attempts</caption>
+          <tr>
+            <th>Guess</th>
+            <th>Answer</th>
+          </tr>
+          <% @request.session[:turns].each_pair do |guess, answer| %>
+            <tr>
+              <td><%= guess %></td>
+              <td><%= answer %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

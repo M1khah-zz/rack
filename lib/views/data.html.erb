@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Codebreaker</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/application.css" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+      <div class="game-info "><a href="/">Codebreaker</a></div>
+      </nav>
+      <h1 class = "title">Codebreaker</h1>
+      <div class="container">
+        <table>
+          <caption>Data</caption>
+          <tr>
+            <th>Name</th>
+            <th>Secret code</th>
+            <th>Attempts used</th>
+            <th>Hints used</th>
+          </tr>
+          <% sorted_data.each do |record| %>
+            <tr>
+              <td><%= record[:name] %></td>
+              <td><%= record[:secret_code] %></td>
+              <td><%= record[:attempts_left] %></td>
+              <td><%= record[:hints_left] %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

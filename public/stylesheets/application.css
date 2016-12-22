@@ -1,0 +1,73 @@
+body {
+  font-family: Verdana;
+  font-size: 20px;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 1.2rem;
+}
+
+.game {
+  margin: auto;
+  width: 900px;
+  padding: 20px;
+  display:inline-block;
+  margin-left: 32em;
+}
+
+.info {
+  border: 2px 0 2px 0 solid ;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  display:inline-block;
+  text-align: center;
+}
+
+.records {
+  margin-top: 5em;
+}
+
+.game-info {
+  text-align: center;
+}
+
+h1.title {
+  text-align: center;
+  font-size: 70px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+input.text {
+  width:  400px;
+  height: auto;
+  padding: 5px 10px 5px 10px;
+  margin: 10px;
+  font-size: 15px;
+  text-align: center;
+}
+
+
+table {
+  margin: auto;
+  border-spacing: 0 2em;
+
+}
+
+td, th {
+  text-align: center;
+  border: 2px solid;
+  padding: 5px;
+}
+
+
+caption {
+  text-transform: uppercase;
+}
+
+.row {
+  display: inline-block;
+}
