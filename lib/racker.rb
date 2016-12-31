@@ -41,7 +41,7 @@ class Racker
   end
 
   private
-  
+
   def game
     @request.session[:game] ||= Codebreaker::Game.new
   end
@@ -71,10 +71,14 @@ class Racker
     statistics = data || []
     statistics << data
 
+    save_data_to_file
+    redirect_to('/restart')
+  end
+
+  def save_data_to_file
     File.open('data.yaml', "w") do |f|
       f.write(statistics.to_yaml)
     end
-    redirect_to('/restart')
   end
 
   def show_data
