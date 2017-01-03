@@ -10,11 +10,9 @@ body {
 }
 
 .game {
-  margin: auto;
-  width: 900px;
+  margin-left: 29%;
+  width: 100%;
   padding: 20px;
-  display:inline-block;
-  margin-left: 32em;
 }
 
 .info {

@@ -11,11 +11,12 @@ class Racker
     @request = Rack::Request.new(env)
     @game = game
     @request.session[:turns] ||= {}
+    @statistics = database || []
   end
 
   def sorted_data
-    return [] unless data
-    data.sort_by { |record| record[:attempts_used] }
+    return [] unless database
+    database.sort_by { |record| record[:attempts_used] }
   end
 
   def session_data(data)
@@ -64,20 +65,16 @@ class Racker
 
   def save
     File.new('data.yaml', 'w') unless File.exist?('data.yaml')
-
     data = @game.to_h
     data[:name] = @request.params['name']
-
-    statistics = data || []
-    statistics << data
-
+    @statistics << data
     save_data_to_file
     redirect_to('/restart')
   end
 
   def save_data_to_file
     File.open('data.yaml', "w") do |f|
-      f.write(statistics.to_yaml)
+      f.write(@statistics.to_yaml)
     end
   end
 
@@ -85,7 +82,7 @@ class Racker
     Rack::Response.new(render('data.html.erb'))
   end
 
-  def data
+  def database
     YAML.load_file('data.yaml')
   end
 
